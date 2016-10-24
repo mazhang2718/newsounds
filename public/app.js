@@ -7,7 +7,6 @@
 	var scale = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"];
 	var chordProg = ["Dm", "A7", "C7", "Fmaj", "D7", "Gmaj", "Cmaj"];
 
-
 	socket.on('news', function(data){
 
 		console.log(data);
@@ -17,8 +16,8 @@
 			abstracts.push(data[i].abstract);
 		}	
 
-		//var ctr = abstracts.length - 1;
-		var ctr = 2;
+		var ctr = abstracts.length - 1;
+		//var ctr = 7;
 		var noteIndex;
 
 		Tone.Transport.scheduleRepeat(function(time){
@@ -33,13 +32,20 @@
 					synth.triggerAttackRelease(note, "32n");
 				}, chordNotes[chord], "upDown");
 
-				pattern.start(time).stop("+1m");
+				pattern.start(time).stop("+4m");
+
+				var msg = new SpeechSynthesisUtterance(abstract);
+
+				var voices = window.speechSynthesis.getVoices();
+					msg.voice = voices[17]; // Note: some voices don't support altering params
+
+				window.speechSynthesis.speak(msg);
 
 	    		document.getElementById('test').innerHTML = abstract;
 
 	    		ctr -= 1;
 			}
-		}, "1:00:00");	
+		}, "4:00:00");	
 
 	});
 

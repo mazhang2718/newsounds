@@ -1,5 +1,7 @@
 
-
+*{
+   margin: 0;
+}
 body{
 	font-family: Arial, Helvetica, "PT Sans", sans-serif;
 }
