@@ -1,6 +1,6 @@
 
 
-	var socket = io.connect('http://localhost:3000');
+	var socket = io();
 
 	var synth = new Tone.Synth().toMaster();
 
@@ -17,7 +17,8 @@
 			abstracts.push(data[i].abstract);
 		}	
 
-		var ctr = abstracts.length - 1;
+		//var ctr = abstracts.length - 1;
+		var ctr = 2;
 		var noteIndex;
 
 		Tone.Transport.scheduleRepeat(function(time){
