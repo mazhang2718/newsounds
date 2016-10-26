@@ -6,6 +6,14 @@ body{
 	font-family: Arial, Helvetica, "PT Sans", sans-serif;
 }
 
+#image{
+
+   display: block;
+   width: 200px;
+   height: 200px;
+
+}
+
 #test{
    width: 50%;
    text-align: center;

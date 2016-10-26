@@ -39,17 +39,19 @@ io.on('connection', function(socket){
 
 		  body = JSON.parse(body);
 		  var results = body.results;
-		  var abstracts = {};
-		  var abstract;
-		  var sent;
+		  var data = [];
+		  var story = {};
 
 		  for (var i=0; i<results.length; i++){
-		  	abstract = results[i].abstract;
-		  	sent = sentiment(abstract);
-		  	abstracts[i] = [abstract, sent];
+		  	story = {};
+		  	story["abstract"] = results[i].abstract;
+		  	story["sent"] = sentiment(results[i].abstract);
+		  	story["section"] = results[i].section;
+		  	story["media"] = results[i].multimedia;
+		  	data.push(story);
 		  }
 		  
-		  socket.emit('news', abstracts);
+		  socket.emit('news', data);
 		});
 
 	}
@@ -57,7 +59,7 @@ io.on('connection', function(socket){
 	sendRequest();
 
 	socket.on('newAbstractRequest', function(socket){
-		console.log('hi');
+		console.log("hello hello hello");
 		sendRequest();
 	});
 
