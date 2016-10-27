@@ -280,7 +280,7 @@ function draw(elements){
 
   		if (elements[i].clef == "treble"){
   			y = ((window.innerHeight / 2) / (elements[i].note/12 + 1))*15 ;
-  			color = 'red';
+  			color = 'orange';
   		}
   		else{
   			y = ((window.innerHeight / 2) / (elements[i].note/12 + 1))*15 + (window.innerHeight / 3);
