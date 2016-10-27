@@ -219,7 +219,7 @@ function genVoices(abstract){
 
 	var voices = window.speechSynthesis.getVoices();
 	
-	msg.voice = voices[17]; 
+	msg.voice = voices[0]; 
 
 	window.speechSynthesis.speak(msg);
 
