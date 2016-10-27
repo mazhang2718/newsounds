@@ -283,7 +283,7 @@ function draw(elements){
   			color = 'red';
   		}
   		else{
-  			y = ((window.innerHeight / 2) / (elements[i].note/12 + 1))*15 + (window.innerHeight / 2.8);
+  			y = ((window.innerHeight / 2) / (elements[i].note/12 + 1))*15 + (window.innerHeight / 3);
   			//console.log(y);
   			color = 'green';
   		}
@@ -402,6 +402,11 @@ function start(){
 	}
 	else{
 		Tone.Transport.stop();
+		// elements = [];
+		// abstracts = [];
+		// sentiments = [];
+		// sections = [];
+		// multimedia = [];
 		playing = false;
 	}
 }
