@@ -13,21 +13,84 @@
 
 <body>
 
+<div id="header">
+
+<h1> NEWSounds </h1>
+
+<div id="section">Section</div>
+
+<div id="play">||</div>
+
+<a href="#infoBox">
+  <div id="info" class="thumbnail">Info</div>
+</a>
+
+<!-- lightbox container hidden with CSS -->
+<a href="#" class="lightbox" id="infoBox">
+  <div id = 'stuff'>
+  <h1 id = "stuff1"> About </h1>
+  <br>
+  <p id ="stuff2"> NEWSounds is an experiment in data sonfication. What you see/hear is a live feed of news events taken from the NYT API, which is mapped to sound through the following mechanisms: </p>
+
+  <br>
+
+  <div id="list">
+  <p> + The category (e.g. 'Sports', 'Politics') is mapped to a unique root note </p> 
+
+  <p> + A sentiment analysis of the text determines the mode (positive maps to major, negative to minor) </p> 
+
+  <p> + Once the scale is generated from the root and the mode, a random seed generator takes the news abstract as an input and semi-randomly chooses a combination of notes and rhythms to play from the scale </p>
+
+  <p> + You can also adjust the tempo of the piece through scrolling </p>
+  </div>
+  
+<br>
+  <p>For more info, you can check out the Github repo (mazhang2718), or DM me on Twitter (@_mazhang). </p>
+
+  <br>
+
+  </div>
+
+
+</a>
+
+
+</div>
+
+<div id="visuals">
+<canvas id="canvas" width="100px" height="100px">
+Your browser does not support the HTML5 canvas tag.</canvas>
+</div>
+
+
 <div class="flexcontainer">
 
-	<h2 id="test"></h2>
+
+
+	<h3 id="test"> <p id ="big" onclick="start()"> Start </p> </h3>
 	<br>
 
 </div>
 
+
+
+<div id="imageBarLeft">
+	
+</div>
+
+<div id="imageBarCenter">
+	
+</div>
+
+<div id="imageBarRight">
+
+</div>
+
+<!--
 <div class="section" id = "A">
 </div>
+-->
 
-<div class="section" id="B">
-</div>
-
-<div class="section" id="C">
-</div>
 
 
 </body>

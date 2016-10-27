@@ -13,6 +13,9 @@ Initialize Globals
 var socket = io();
 
 //Array of news headline/abstracts
+
+var elements = [];
+
 var abstracts = [];
 var sentiments = [];
 var sections = [];
@@ -137,7 +140,10 @@ function genNote(scale){
 //Loops the iteration every res (16th note) for iterLength duration
 function setTransport(_root, mode){
 
-    Tone.Transport.bpm.value = bpm;
+
+
+
+
 
 
     Tone.Transport.scheduleRepeat(function(time) {
@@ -146,6 +152,8 @@ function setTransport(_root, mode){
 
 
     Tone.Transport.scheduleRepeat(function(time) {
+      bpm = (document.body.scrollTop*0.03)+40; 	
+      Tone.Transport.bpm.value = bpm;
       playTreble(_root, mode);
     }, res, "+0m", iterLength);
 
@@ -158,6 +166,16 @@ function playTreble(_root, mode){
 
 	var noteData = genNote(scale);
 
+	var vis = {};
+	vis["note"] = noteData.note;
+	vis["duration"] = noteData.duration;
+	vis["root"] = _root;
+	vis["mode"] = mode;
+	vis["clef"] = "treble";
+	vis["left"] = 0;
+
+	elements.push(vis);
+
 	synth.triggerAttackRelease(noteData.note, noteData.duration);
 
 }
@@ -168,13 +186,24 @@ function playBass(_root, mode){
 
 	var chord = genChord7(scale);
 
+	var duration = rhythms_bass[Math.floor(Math.random()*rhythms_bass.length)];
+
+	var vis = {};
+
 	for (var i=0; i<chord.length; i++){
 
+		vis = {};
 		chord[i] = Tone.Frequency(chord[i]).transpose(-12).eval();
+		vis["note"] = chord[i];
+		vis["duration"] = duration;
+		vis["root"] = _root;
+		vis["mode"] = mode;
+		vis["clef"] = "bass";
+		vis["left"] = 0;
+
+		elements.push(vis);
 
 	}
-
-	var duration = rhythms_bass[Math.floor(Math.random()*rhythms_bass.length)];
 
 	polySynth.triggerAttackRelease(chord, duration);
 
@@ -229,6 +258,69 @@ function getRoot(section){
 }
 
 
+function draw(elements){
+
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext) {
+
+
+	var ctx = canvas.getContext('2d');
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
+
+  	var i = 0;
+  	var x;
+  	var y;
+  	var width;
+  	var height = (window.innerHeight)/60;
+  	var color;
+  	var speed = 5;
+  	
+  	while (i < elements.length){
+
+  		if (elements[i].clef == "treble"){
+  			y = ((window.innerHeight / 2) / (elements[i].note/12 + 1))*15 ;
+  			color = 'red';
+  		}
+  		else{
+  			y = ((window.innerHeight / 2) / (elements[i].note/12 + 1))*15 + (window.innerHeight / 2.8);
+  			//console.log(y);
+  			color = 'green';
+  		}
+
+  		x = elements[i].left;
+
+  		width = parseInt(10 / (elements[i].duration[0] * 0.1), 10);
+
+  		ctx.fillStyle = color;
+
+  		//console.log(elements);
+  		//console.log(x); console.log(y); console.log(width); console.log(height);
+  		//console.log(y);
+
+	    ctx.fillRect(x, y, width, height);
+
+
+
+	    if (elements[i].left < window.innerWidth){
+	    	elements[i].left += speed;
+	    }
+	    else{
+			if (i > -1) {
+			    elements.splice(i, 1);
+			    i -= 1;
+			}
+	    }
+
+	    i++;
+
+	}
+
+  }
+
+}
+
+
 /*
 
 
@@ -245,7 +337,7 @@ EXECUTE
 //Retrieve new data from the news API
 socket.on('news', function(data){
 
-	console.log(data);
+	//console.log(data);
 
 	for (var i = 0; i<data.length; i++) {
 	    abstracts.push(data[i].abstract);
@@ -254,7 +346,7 @@ socket.on('news', function(data){
 	    multimedia.push(data[i].media);
 	 }
 
-	 console.log(multimedia);
+	//console.log(multimedia);
 
 	var duration = Tone.TimeBase(iterLength).mult(String(abstracts.length));
 	duration = Tone.Time(duration).toNotation();
@@ -279,15 +371,16 @@ socket.on('news', function(data){
 
 			_root = getRoot(section);
 
+
 			setTransport(_root, mode);
 
-			//genVoices(abstract);
-
-			//genVisuals();
+			genVoices(abstract);
 
     		document.getElementById('test').innerHTML = abstract;
     		if (media != ""){
-    			document.getElementById('A').style.background = 'url(' + media[0].url + ')';
+    			document.getElementById('imageBarLeft').style.background = 'url(' + media[2].url + ')';
+    			document.getElementById('imageBarRight').style.background = 'url(' + media[2].url + ')';
+				document.getElementById('imageBarCenter').style.background = 'url(' + media[2].url + ')';
     		}
     	}
     	else{
@@ -297,4 +390,24 @@ socket.on('news', function(data){
 
 });
 
-Tone.Transport.start();
+
+var playing = false;
+
+function start(){
+	console.log('start');
+
+	if (playing == false){
+		Tone.Transport.start();
+		playing = true;
+	}
+	else{
+		Tone.Transport.stop();
+		playing = false;
+	}
+}
+
+var el = document.getElementById("play");
+el.addEventListener("click", function(){start()});
+
+
+setInterval(function(){draw(elements)}, 10);

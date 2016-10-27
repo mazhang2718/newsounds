@@ -3,7 +3,116 @@
    margin: 0;
 }
 body{
-	font-family: Arial, Helvetica, "PT Sans", sans-serif;
+	font-family: "Futura", sans-serif;
+}
+
+h1{
+   font-family: "Futura", sans-serif;
+   text-align:center;
+}
+
+#header{
+   position: fixed;
+   padding: 5px 0;
+   height: 7%;
+   z-index: 1000;
+   width: 100%;
+   background-color: white;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+
+}
+
+#stuff{
+   position: absolute;
+   top: 10%;
+   left: 10%;
+   width: 80%;
+   height: 60%;
+}
+
+#stuff p{
+   color: white;
+   text-align: left;
+   line-height: 1.6;
+   font-size: 90%;
+}
+
+#list p{
+   font-size: 80%;
+   line-height: 1.5;
+}
+
+#stuff1{
+
+   color: white;
+}
+
+
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  margin-top: 2%;
+}
+
+.lightbox:target {
+  outline: none;
+  display: block;
+}
+
+
+#big{
+   cursor:pointer;
+   font-size: 5em;
+}
+#play{
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   top: 25%;
+   right: 8%;
+   border: 2px;
+
+}
+
+#section{
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   top: 30%;
+   left: 5%;
+   border: 2px;
+}
+
+#info{
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   top: 30%;
+   right: 0%;
+   width: 50px;
+   border: 2px;
+}
+
+#visuals{
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   z-index: 0;
 }
 
 #image{
@@ -15,9 +124,13 @@ body{
 }
 
 #test{
-   width: 50%;
+   width: 40%;
    text-align: center;
    color: white;
+   background-color: black;
+   padding: 5%;
+   border-radius: 10px;
+   z-index: 100;
 }
 
 .flexcontainer{
@@ -33,7 +146,60 @@ body{
 .section{
    position: relative;
    width: 100%;
-   height: 2000px;
+   height: 10000px;
+}
+
+#bar1{
+   position: fixed;
+   width: 100%;
+   background: red;
+   top: 10%;
+   height:10%;
+   z-index: 75;
+}
+
+#bar2{
+   position: fixed;
+   width: 100%;
+   background: blue;
+   bottom: 10%;
+   height:10%;
+   z-index: 75;
+}
+
+#bar3{
+   position: fixed;
+   width: 10%;
+   background: green;
+   left: 45%;
+   height:100%;
+   z-index: 0;
+}
+
+#imageBarLeft{
+   position: absolute;
+   width: 15%;
+   height: 10000px;
+   left: 5%;
+   z-index: -1;
+   background-size: 100% auto;
+}
+
+#imageBarRight{
+   position: absolute;
+   width: 15%;
+   height: 10000px;
+   right: 5%;
+   z-index: -1;
+}
+
+#imageBarCenter{
+   display: none;
+   position: absolute;
+   width: 10%;
+   height: 10000px;
+   right: 45%;
+   z-index: 50;
 }
 
 #A{
