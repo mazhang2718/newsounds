@@ -221,6 +221,9 @@ function genVoices(abstract){
 	
 	msg.voice = voices[0]; 
 
+	msg.rate = bpm/120;
+
+
 	window.speechSynthesis.speak(msg);
 
 }
@@ -402,11 +405,11 @@ function start(){
 	}
 	else{
 		Tone.Transport.stop();
-		// elements = [];
-		// abstracts = [];
-		// sentiments = [];
-		// sections = [];
-		// multimedia = [];
+		elements = [];
+		abstracts = [];
+		sentiments = [];
+		sections = [];
+		multimedia = [];
 		playing = false;
 	}
 }

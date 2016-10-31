@@ -6,15 +6,19 @@ body{
 	font-family: "Futura", sans-serif;
 }
 
+@media (min-width: 500px){
+
 h1{
    font-family: "Futura", sans-serif;
    text-align:center;
+   margin: 0% auto;
+   font-size: 300%;
 }
 
 #header{
    position: fixed;
    padding: 5px 0;
-   height: 7%;
+   height: 10%;
    z-index: 1000;
    width: 100%;
    background-color: white;
@@ -23,6 +27,85 @@ h1{
             box-shadow: 0 10px 6px -6px #777;
 
 }
+
+#play{
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   font-size: 200%;
+   top: 10px;
+   left: 5%;
+   border: 2px;
+
+}
+
+#info{
+   color: black;
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   top: 10px;
+   font-size: 200%;
+   right: 8%;
+   width: 50px;
+   border: 2px;
+}
+
+
+  }
+
+@media only screen and (max-width: 500px) {
+
+h1{
+   font-family: "Futura", sans-serif;
+   text-align:center;
+   margin: 3% auto;
+   font-size: 200%;
+}
+
+#header{
+   position: fixed;
+   padding: 5px 0;
+   height: 10%;
+   z-index: 1000;
+   width: 100%;
+   background-color: white;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+
+}
+
+#play{
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   font-size: 100%;
+   top: 30%;
+   left: 5%;
+   border: 2px;
+
+}
+
+#info{
+   color: black;
+   cursor: pointer;
+   display:inline-block;
+   position:absolute;
+   top: 30%;
+   font-size: 100%;
+   right: 1%;
+   width: 50px;
+   border: 2px;
+}
+
+
+}
+
+
+
+
+
 
 #stuff{
    position: absolute;
@@ -79,15 +162,7 @@ h1{
    cursor:pointer;
    font-size: 350%;
 }
-#play{
-   cursor: pointer;
-   display:inline-block;
-   position:absolute;
-   top: 25%;
-   left: 5%;
-   border: 2px;
 
-}
 
 #section{
    cursor: pointer;
@@ -98,16 +173,7 @@ h1{
    border: 2px;
 }
 
-#info{
-   color: black;
-   cursor: pointer;
-   display:inline-block;
-   position:absolute;
-   top: 30%;
-   right: 5%;
-   width: 50px;
-   border: 2px;
-}
+
 
 #visuals{
    position: fixed;
