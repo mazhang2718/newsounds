@@ -342,12 +342,22 @@ socket.on('news', function(data){
 
 	//console.log(data);
 
+		elements = [];
+		abstracts = [];
+		sentiments = [];
+		sections = [];
+		multimedia = [];
+
+		console.log(abstracts);
+
 	for (var i = 0; i<data.length; i++) {
 	    abstracts.push(data[i].abstract);
 	    sentiments.push(data[i].sent);
 	    sections.push(data[i].section);
 	    multimedia.push(data[i].media);
 	 }
+
+
 
 	//console.log(multimedia);
 
@@ -356,6 +366,17 @@ socket.on('news', function(data){
 
 	//Iterates over each abstract for 4 measures each
 	Tone.Transport.scheduleRepeat(function(time){
+
+		if (playing == false){
+
+		elements.length = 0;
+		abstracts.length = 0;
+		sentiments.length = 0;
+		sections.length = 0;
+		multimedia.length = 0;
+
+		}
+
 		if (abstracts.length>1){
 
 			var abstract = abstracts.pop();
@@ -405,11 +426,11 @@ function start(){
 	}
 	else{
 		Tone.Transport.stop();
-		elements = [];
-		abstracts = [];
-		sentiments = [];
-		sections = [];
-		multimedia = [];
+		elements.length = 0;
+		abstracts.length = 0;
+		sentiments.length = 0;
+		sections.length = 0;
+		multimedia.length = 0;
 		playing = false;
 	}
 }

@@ -33,7 +33,7 @@ io.on('connection', function(socket){
 		request.get({
 		  url: "https://api.nytimes.com/svc/news/v3/content/all/all.json",
 		  qs: {
-		    'api-key': process.env.NYT_API
+		    'api-key': "afe4dca13ffd4c3ab82a16a98713490b"
 		  },
 		}, function(err, response, body) {
 
